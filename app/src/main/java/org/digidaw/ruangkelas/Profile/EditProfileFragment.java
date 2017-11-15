@@ -31,8 +31,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditProfileFragment extends Fragment {
 
-    private ImageView mSaveBtn;
+    private DatabaseReference mUsernameDatabase, mDisplayNameDatabase, mWebsiteDatabase, mAboutDatabase, mEmailDatabase, mPhoneNumbDatabase;
+    private FirebaseUser mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();;
 
+    private ImageView mSaveBtn;
     private CircleImageView mDisplayImage;
     private EditText mUsername, mDisplayName, mWebiste, mAbout, mEmail, mPhoneNumber;
     private TextView editPhoto;
@@ -91,6 +93,19 @@ public class EditProfileFragment extends Fragment {
     }
 
     private void setupFirebaseAuth() {
+        String getCurrentUid = mCurrentUser.getUid().toString();
+
+        //inisialisasi setiap variable Database
+        setUsernameDatabase(getCurrentUid);
+        mDisplayNameDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(getCurrentUid);
+        mWebsiteDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(getCurrentUid);
+        mAboutDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(getCurrentUid);
+        mEmailDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(getCurrentUid);
+        mPhoneNumbDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(getCurrentUid);
+    }
+
+    private void setUsernameDatabase(String mCurrentUser){
+        mUsernameDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser);
 
     }
 }
