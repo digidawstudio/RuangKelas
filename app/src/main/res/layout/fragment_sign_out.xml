@@ -18,7 +18,7 @@
             android:text="Apakah kamu yakin ingin keluar?"/>
 
         <Button
-            android:id="@+id/btnConfirm"
+            android:id="@+id/btnConfirmSignout"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Keluar"
@@ -31,8 +31,9 @@
     </RelativeLayout>
 
     <ProgressBar
+        android:id="@+id/progressLogout"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_centerInParent="true"
-        android:progressBackgroundTint="@color/colorPrimary"/>
+        android:background="@xml/progress" />
 </RelativeLayout>

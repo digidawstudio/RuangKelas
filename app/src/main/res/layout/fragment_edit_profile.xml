@@ -29,7 +29,8 @@
                 android:layout_height="200dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="150dp"
-                android:id="@+id/saveSettingProfile"/>
+                android:id="@+id/saveSettingProfile"
+                android:background="@xml/progress"/>
 
         </RelativeLayout>
     </RelativeLayout>

@@ -1,5 +1,6 @@
 package org.digidaw.ruangkelas.Utilitas;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.digidaw.ruangkelas.Home.MainActivity;
 import org.digidaw.ruangkelas.R;
@@ -38,6 +40,7 @@ public class StartActivity extends AppCompatActivity {
     private ProgressBar mProgresBar;
     private Button mLoginButton;
     private CoordinatorLayout coordinatorLayout;
+    private Context mContext;
 
 
     @Override
@@ -52,6 +55,7 @@ public class StartActivity extends AppCompatActivity {
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.loginCoorLayout);
         mLoginNis = (EditText) findViewById(R.id.editTextNis);
         mLoginPass = (EditText) findViewById(R.id.editTextPassword);
+        mContext = StartActivity.this;
         mLoginButton = (Button) findViewById(R.id.btnMasuk);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -112,5 +116,41 @@ public class StartActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    /**
+     -------------------------------------Setting firebase-------------------------------------
+     */
+    private void setupFirebaseAuth(){
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                //ngecek apakah user login?
+                if (user != null){
+
+                }
+                else{
+
+                }
+            }
+        };
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        if(mAuthListener != null){
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 }
