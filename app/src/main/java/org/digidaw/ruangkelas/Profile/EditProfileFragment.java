@@ -43,47 +43,12 @@ public class EditProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
-        mDisplayImage = (CircleImageView) view.findViewById(R.id.profile_photo);
-        mDisplayName = (EditText) view.findViewById(R.id.displayname);
-        mUsername = (EditText) view.findViewById(R.id.username);
-        mWebiste = (EditText) view.findViewById(R.id.website);
-        mAbout = (EditText) view.findViewById(R.id.bio);
-        mEmail = (EditText) view.findViewById(R.id.email);
-        mPhoneNumber = (EditText) view.findViewById(R.id.phoneNumber);
-
-        //seting tombol kembali
-        ImageView backArrow = (ImageView) view.findViewById(R.id.backButton);
-        backArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().finish();
-            }
-        });
-
-        //seting tombol save
-        ImageView saveBtn = (ImageView) view.findViewById(R.id.saveBtn);
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveProfileSettings();
-            }
-        });
 
         return view;
     }
 
     private void saveProfileSettings(){
-        final String displayName = mDisplayName.getText().toString();
-        final String username = mUsername.getText().toString();
-        final String website = mWebiste.getText().toString();
-        final String bio = mAbout.getText().toString();
-        final String email = mEmail.getText().toString();
-        final long phone = Long.parseLong(mPhoneNumber.getText().toString());
 
-        //kasus 1, jika user mengubah usernamenya
-
-
-        //case2: if the user made a change to their email
     }
 
     private void checkIfUsernameExists(final String username){
